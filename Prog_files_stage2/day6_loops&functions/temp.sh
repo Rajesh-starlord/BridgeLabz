@@ -1,0 +1,30 @@
+#! /bin/bash
+
+read -p "enter unit c/f---" unit
+read -p "enter value ---" val
+
+constant1=`awk "BEGIN {print 9 / 5 }"`
+constant2=`awk "BEGIN {print 5 / 9 }"`
+
+case $unit in
+	"c")
+		if [ $val -ge 0 ] && [ $val -le 100 ]; then
+			F=`awk "BEGIN {print $val * $constant1 + 32 }"` 
+			echo "$val C = $F F"
+		else
+			echo "enter value btw 0 to 100"
+		fi
+	;;
+	"f")
+		if [ $val -ge 32 ] && [ $val -le 212 ]; then
+			c=`awk "BEGIN {print $val - 32 }"`
+			C=`awk "BEGIN {print $c * $constant2 }"`
+			echo "$val F = $C C"
+		else
+			 echo "enter value btw 32 to 212"
+		fi
+	;;
+	*)
+		echo "invalid input"
+	;;
+esac

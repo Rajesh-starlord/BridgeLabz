@@ -1,0 +1,88 @@
+#! /bin/bash -x
+#to perform arithmatic operations between two user given variables
+
+read -p "enter 1st no" a
+read -p "enter 2nd no" b
+
+sum=`awk "BEGIN {print $a + $b}"`
+diff=`awk "BEGIN {print $a - $b}"`
+mul=`awk "BEGIN {print $a * $b}"`
+div=`awk "BEGIN {print $a / $b}"`
+
+
+echo "sum= "$sum
+echo "diff= "$diff
+echo "mul= "$mul
+echo "div= "$div
+
+----------------------------------------------------------------
+#! /bin/bash -x
+
+#to generate a random single digit no
+
+var=$(($RANDOM%10));
+echo $var
+
+------------------------------------------------------------------
+#! /bin/bash -x
+
+#to print the random no of a dice
+#as dice has 6 faces its optional to take input from user
+
+rno=$(($(($RANDOM%6))+1));
+echo $rno
+-------------------------------------------------------------------
+#! /bin/bash -x
+
+#program to add  random numbers  from two dices
+#as dice has 6 faces its optional to take input from user
+
+dice1=$(($(($RANDOM%6))+1));
+echo $dice1
+dice2=$(($(($RANDOM%6))+1));
+echo $dice2
+sum=$(($dice1+$dice2));
+echo "sum of two random dice no="$sum
+
+--------------------------------------------------------------------
+#! /bin/bash -x
+
+#to find out sum and avg of five given random no
+
+i=1;
+
+while [ $i -le 5 ]
+do
+        no=$(($RANDOM%100))
+        sum=$((sum + no))
+        i=$((i + 1))
+
+done
+
+avg=$(($sum/5))
+echo "sum="$sum
+echo "avg="$avg
+----------------------------------------------------------------------
+#! /bin/bash -x
+
+#unit conversion from inches to feet
+
+read -p  "enter inches" in
+feet=`awk "BEGIN {print $in / 12}"`
+echo "$in inches = $feet feet"
+
+---------------------------------------------------------------------
+#! /bin/bash -x
+
+#program to read length and width in feet and display area in acre
+
+read -p "enter a side of rectangle" length
+read -p "enter another side of reactangle" width
+
+area=$(($length*$width))
+area_in_acre=`awk "BEGIN {print $area / 43560}"`
+
+echo "area="$area_in_acre "acre"
+
+-----------------------------------------------------------------------
+

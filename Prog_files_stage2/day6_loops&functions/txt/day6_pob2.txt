@@ -1,0 +1,111 @@
+
+------------------------------------------------------------------------------------------
+#! /bin/bash -x
+#print the power-2 table of a no till 256
+
+read -p "enter your range--" range
+
+if [ $range -gt 8 ];then
+        echo "power is restricted to 2^8:"
+else
+
+        result=1;
+        echo "2^0=1"
+        count=1
+        i=1
+
+        while [ $count -le $range ]
+        do
+                while [ $i -le $count ]
+                do
+                        result=$(($result*2))
+                        i=$(($i+1))
+                done
+                echo "2^$count=$result"
+                count=$(($count+1))
+        done
+fi
+
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+#! /bin/bash -x
+#simulate coin flip
+
+HEAD=0
+TAIL=0
+
+while [ $HEAD -lt 11 ] && [ $TAIL -lt 11 ]
+do
+        rno=$(($RANDOM%3))
+
+        if [ $rno -eq 1 ]; then
+                echo "heads"
+                HEAD=$(($HEAD+1))
+        else
+                echo "tails"
+                TAIL=$(($TAIL+1))
+        fi
+done
+
+echo "you got $HEAD heads and $TAIL tails in flip"
+
+-----------------------------------------------------------------------------------------
+MAGIC_NO &GAMBLE PROBLEM
+========================================================================================
+#! /bin/bash
+#find magic no
+
+echo "think a no between 1-100:---"
+step=1
+low=1
+heigh=100
+found=0
+
+while [ $low -le $heigh ] && [ $found -ne 1 ]
+do
+        mid=$(((($low+$heigh)/2)));
+        read -p "is your no is $mid--y/n--" ans
+        if [ $ans == "y" ]; then
+                magic=$mid
+                echo "magic no $magic found in $step steps"
+                found=1
+        else
+
+                read -p "is your no lies between 1 to $mid--y/n--" ans
+                if [ $ans == "n" ]; then
+                        low=$(($mid+1))
+                        step=$(($step+1))
+                elif [ $ans == "y" ]; then
+                        heigh=$(($mid-1))
+                        step=$(($step+1))
+                fi
+        fi
+done
+=================================================================================
+#! /bin/bash
+#gambling till win or loose
+
+win=0
+betno=0
+totalstock=100
+maxwin=200
+loss=0
+
+while [ $totalstock -lt $maxwin ] && [ $totalstock -gt 0 ]
+do
+        rno=$(($RANDOM%3))
+
+        if [ $rno -eq 1 ]; then
+                win=$(($win+1))
+                betno=$(($betno+1))
+                totalstock=$(($totalstock+1))
+        elif [ $rno -eq 2 ]; then
+                betno=$(($betno+1))
+                loss=$(($loss+1))
+                totalstock=$(($totalstock-1))
+        fi
+done
+
+echo "you won $win times and loose $loss time || totalbalance= $totalstock"
+
+=================================================================================

@@ -1,0 +1,114 @@
+#! /bin/bash
+#print the power-2 table of a no
+
+read -p "enter your range--" range
+result=1;
+echo "2^0=1"
+for((count = 1; count<=range; count++ ))
+do
+        for((i = 1; i<=count; i++ ))
+        do
+                result=$(($result*2))
+        done
+
+        echo "2^$count=$result"
+        result=1
+done
+
+--------------------------------------------------
+#! /bin/bash -x
+#to print the harmonic series and (their sum)--optional
+
+read -p "enter your range--" range
+sum=0
+
+for((count = 1; count<=range; count++ ))
+do
+        hno=`awk "BEGIN {print 1 / $count}"`
+        if [ $count -eq $range ]; then
+                series+="1/$count"
+        else
+                series+="1/$count + "
+        fi
+        sum=`awk "BEGIN {print $sum + $hno}"`
+done
+echo "garmonic series="$series
+echo "sum of harmonic no=$sum"
+---------------------------------------------------------
+#! /bin/bash -x
+#to check a no is prime or not
+
+read -p "enter your number--" no
+
+for(( count = 1; count<=no; count++ ))
+do
+        rem=`awk "BEGIN {print $no % $count}"`
+        if [ $rem -eq 0 ]; then
+                noOFdivisers=$(($noOFdivisers+1))
+        fi
+done
+
+if [ $noOFdivisers -le 2 ] && [ $no -ne 1 ]; then
+        echo "$no is a prime no"
+else
+	echo "$no is not-prime"
+fi
+------------------------------------------------------------------
+
+#! /bin/bash
+#to check the prime nos within a range
+
+read -p "enter your starting_range--" start
+read -p "enter the ending range--" end
+
+for(( i = start; i<=end; i++ ))
+do
+        for(( count = 1; count<=i; count++ ))
+        do
+                rem=`awk "BEGIN {print $i % $count}"`
+                if [ $rem -eq 0 ]; then
+                        noOFdivisers=$(($noOFdivisers+1))
+                fi
+        done
+
+        if [ $noOFdivisers -le 2 ] && [ $i -ne 1 ]; then
+                primenos+="$i "
+        fi
+        noOFdivisers=0
+done
+echo "prime numbers between $start and $end = $primenos"
+
+------------------------------------------------------------------
+#! /bin/bash -x
+#factorial of a no
+
+read -p "enter a no--" no
+fact=1
+for(( i = 1;i<=no;i++ ))
+do
+        fact=$(($fact*$i))
+done
+echo "factorial of $no= $fact"
+
+----------------------------------------------------------------------
+#! /bin/bash -x
+#prime factorialization of a no
+
+read -p "enter a no" no
+
+p=2;
+res=$(($p*$p))
+while [ $no -ge $res ]
+do
+        mod=$(($no%$p))
+        if [ $mod -eq 0 ]; then
+                printf "$p *"
+                no=$(($no/$p))
+        else
+                p=$(($p+1))
+        fi
+done
+printf $no
+
+------------------------------------------------------------------------------------------------
+=============================thank you=======================================================

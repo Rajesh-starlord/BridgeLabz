@@ -1,0 +1,208 @@
+#! /bin/bash -x
+#calculatin min and max of 3 digit random no
+
+num1=$(($RANDOM%1000))
+num2=$(($RANDOM%1000))
+num3=$(($RANDOM%1000))
+
+echo $num1 "||" $num2 "||" $num3
+
+if [ $num1 -gt $num2 ] && [ $num1 -gt $num3 ]
+then
+    echo "max="$num1
+elif [ $num2 -gt $num1 ] && [ $num2 -gt $num3 ]
+then
+    echo "max="$num2
+else
+    echo "max="$num3
+fi
+
+if [ $num1 -le $num2 ] && [ $num1 -le $num3 ]
+then
+    echo "min="$num1
+elif [ $num2 -le $num1 ] && [ $num2 -le $num3 ]
+then
+    echo "min="$num2
+else
+    echo "min="$num3
+fi
+--------------------------------------------------------------------
+#! /bin/bash -x
+#to check weather the date lies b/w march 20 and june 20 or not
+
+read -p "enter the day (dd)" dd
+read -p "enter the month(mm)" mm
+
+
+if [ $mm -eq 03 ] && [ $dd -gt 20 ];then
+
+        echo "true"
+
+elif [ $mm -eq 06 ] && [ $dd -lt 20 ]; then
+
+        echo "true"
+
+elif [ $mm -ge 04 ] && [ $mm -le 05 ]; then
+
+        echo "true"
+else
+        echo "false"
+fi
+
+---------------------------------------------------------------------------
+#! /bin/bash -x
+
+#to check given year is leap year or not
+
+echo -n "Enter year (yyyy) : "
+read yy
+
+isleap="false"
+
+# find out if it is a leap year or not
+
+if [ $((yy % 4)) -ne 0 ] ; then
+   : #  not a leap year
+elif [ $((yy % 400)) -eq 0 ] ; then
+   # yes, it's a leap year
+        isleap="true"
+elif [ $((yy % 100)) -eq 0 ] ; then
+   : # not a leap year
+else
+   # it is a leap year
+        isleap="true"
+fi
+if [ $isleap == "false" ] ; then
+        echo "$yy is not a leap year"
+else
+        echo "$yy is a leap year"
+fi
+--------------------------------------------------------------------                                                                   coinflip.sh
+#! /bin/bash -x
+
+#simulate coin flip
+
+i=1
+HEAD=0
+TAIL=0
+
+while [ $i -le 10 ]
+do
+        rno=`seq 2 | sort -R |awk '{print}' | head -n 1`
+
+        if [ $rno -eq 1 ]; then
+                echo "heads"
+                HEAD=$(($HEAD+1))
+        else
+                echo "tails"
+                TAIL=$(($TAIL+1))
+        fi
+        i=$(($i+1))
+done
+
+echo "you got $HEAD heads and $TAIL tails in flip"
+------------------------------------------------------------------
+
+#! /bin/bash -x
+#take number and print the day
+
+read -p "enter a single digit no--" number
+
+if [ $number -eq 0 ]; then
+        echo "zero"
+elif [ $number -eq 1 ]; then
+        echo "one"
+elif [ $number -eq 2 ]; then
+        echo "two"
+elif [ $number -eq 3 ]; then
+        echo "three"
+elif [ $number -eq 4 ]; then
+        echo "four"
+elif [ $number -eq 5 ]; then
+        echo "five"
+elif [ $number -eq 6 ]; then
+        echo "six"
+elif [ $number -eq 7 ]; then
+        echo "seven"
+elif [ $number -eq 8 ]; then
+        echo "eight"
+elif [ $number -eq 9 ]; then
+        echo "nine"
+else
+        echo "invalid input"
+fi
+--------------------------------------------------------------------
+#! /bin/bash -x
+#take number and print the day
+
+read -p "enter a no btw 1-7 ---" number
+
+if [ $number -eq 1 ]; then
+        echo "SUNDAY"
+elif [ $number -eq 2 ]; then
+        echo "MONDAY"
+elif [ $number -eq 3 ]; then
+        echo "TUESDAY"
+elif [ $number -eq 4 ]; then
+        echo "WEDNESSDAY"
+elif [ $number -eq 5 ]; then
+        echo "THURSDAY"
+elif [ $number -eq 6 ]; then
+        echo "FRIDAY"
+elif [ $number -eq 7 ]; then
+        echo "SATURDAY"
+else
+        echo "invalid input"
+fi
+-------------------------------------------------------------
+#! /bin/bash -x
+#finding min and max
+
+read -p "enter no1---" a
+read -p "enter no2---" b
+read -p "enter no3---" c
+
+val1=`awk "BEGIN {print $a + $b * $c}"`
+val2=`awk "BEGIN {print $a % $b * $c}"`
+val3=`awk "BEGIN {print $c + $a / $b}"`
+val4=`awk "BEGIN {print $a * $b + $c}"`
+
+echo "$val1 || $val2 || $val3 || $val4"
+
+var=$val1-$val2-$val3-$val4
+
+max=`echo $var | awk -F"-" '{m=$1; for (i=2; i<=NF; i++) if ($i > m) m = $i; print m}'`
+min=`echo $var | awk -F"-" '{m=$1; for (i=2; i<=NF; i++) if ($i < m) m = $i; print m}'`
+echo "min=$min"
+echo "max=$max"
+-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+#! /bin/bash -x
+#convert a single digit no to word spell
+
+read -p "Enter a single digit  number : " num
+
+
+case $num in
+        0)
+                echo "zero " ;;
+        1)
+                echo "one " ;;
+        2)
+                echo "two " ;;
+        3)
+                echo "three " ;;
+        4)
+                echo "four " ;;
+        5)
+                echo "five " ;;
+        6)
+                echo "six " ;;
+        7)
+                echo "seven " ;;
+        8)
+                echo "eight " ;;
+        9)
+                echo "nine " ;;
+        *)
+                echo "invalid input" ;;
+esac
+
+-----------------------------------------------------------
+#! /bin/bash -x
+#take a no and print the day using case
+
+read -p "Enter a mo btw 1 - 7 : " day
+
+case $day in
+        1)
+                echo "SUNDAY" ;;
+        2)
+                echo "MONDAY" ;;
+        3)
+                echo "TUESDAY" ;;
+        4)
+                echo "WEDNESSDAY" ;;
+        5)
+                echo "THURSEDAY" ;;
+        6)
+                echo "FRIDAY" ;;
+        7)
+                echo "SATURDAY" ;;
+        *)
+                echo "invalid input" ;;
+esac
+-------------------------------------------------------------
+#! /bin/bash -x
+#unit conversion using case
+
+read -p "enter the unit you want to enter inch/feet/meter --" unit
+read -p "enter the value---" val
+
+case $unit in
+        "inch")
+                feet=`awk "BEGIN {print $val / 12}"`
+                echo "$val inch = $feet feet"
+        ;;
+        "feet")
+                inch=`awk "BEGIN {print $val * 12}"`
+                meter=`awk "BEGIN {print $val * 0.3048}"`
+                echo "$val feet = $inch inch"
+                echo "$val feet = $meter meter"
+        ;;
+        "meter")
+                mtofeet=`awk "BEGIN {print $val / 0.3048}"`
+                echo "$val meter = $mtofeet feet"
+        ;;
+        *)
+                echo "invalid unit"
+        ;;
+esac

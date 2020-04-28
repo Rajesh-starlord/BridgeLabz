@@ -1,0 +1,21 @@
+rajesh kanhar
+checkout All folders at:
+https://github.com/Rajesh-starlord/Bridgelabz.git
+==========================================================
+checkout separate
+EmpWageCalculation
+-----------------------------------------------------------
+https://github.com/Rajesh-starlord/shellscript.git
+-----------------------------------------------------------
+Arith_matic computation
+-----------------------------------------------------------
+https://github.com/Rajesh-starlord/Arithmatic_computaion-sorting.git
+-----------------------------------------------------------
+coinFlipSimulation
+-----------------------------------------------------------
+https://github.com/Rajesh-starlord/coinFlip_part1.git
+-----------------------------------------------------------
+flipCoinCombination
+-----------------------------------------------------------
+https://github.com/Rajesh-starlord/flipCoin_combination.git
+-----------------------------------------------------------

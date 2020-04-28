@@ -1,0 +1,116 @@
+ASSOCIATIVE-ARRAY
+PROBLEM-1(dice)
+==================================================================================================
+#! /bin/bash
+
+get_key () {
+
+        key=("one" "two" "three" "four" "five" "six")
+        arg=$(($@-1))
+        echo ${key[$arg]}
+}
+
+extract_val () {
+        value=`echo $@|awk -F":" '{print $2}'`
+        echo $value
+}
+roll_dice () {
+
+        rno=$(($(($RANDOM%6))+1))
+        key=$(get_key $rno)
+        echo $key
+        val=$(extract_val ${dice[$(($rno-1))]})
+        dice[$rno-1]="$key:$(($val+1))"
+        echo ${dice[@]}
+
+}
+
+smallest () {
+
+        small=$(extract_val ${dice[0]})
+        for(( i=1;i<6;i++ ))
+        do
+                val1=$(extract_val ${dice[$i]})
+                if [ $val1 -le $small ];
+                then
+                        small=${dice[$i]}
+                fi
+        done
+        echo "smallest=$small"
+
+}
+
+status="undone"
+roll="yes"
+dice=(one:0 two:0 three:0 four:0 five:0 six:0)
+
+while [ $status == "undone" ]
+do
+        roll_dice $roll
+        for(( i=0;i<6;i++ ))
+        do
+                val=$(extract_val ${dice[$i]})
+                if [ $val -eq 10 ];
+                then
+                        status="done"
+                        roll="no"
+                        greatest=${dice[$i]}
+                        echo "greatest="$greatest
+                        break
+                fi
+        done
+done
+smallest
+echo ${dice[@]}
+
+=============================================================================================
+PROBLEM-2(birth_month)
+=============================================================================================
+#! /bin/bash
+get_month () {
+        mon=( "JAN" "FEB" "MAR" "APR" "MAY" "JUN" "JUL" "AUG" "SEP" "OCT" "NOV" "DEC")
+        arg=$1
+        echo ${mon[$arg]}
+}
+
+for(( i=0;i<50;i++ ))
+do
+        birth_month=$(($(($RANDOM%11))+1))
+        month=$(get_month $birth_month)
+        birth_dict[$i]="person$i:$month-92"
+done
+c=o
+for(( j=0;j<12;j++ ))
+do
+        bmonth=$(get_month $j)
+        array[$c]=$(get_month $j)
+        c=$(($c+1))
+        for(( i=0;i<50;i++ ))
+        do
+                birth_month=`echo  ${birth_dict[$i]} | awk -F":" '{print $2}'`
+                persons_birth_month=`echo  $birth_month | awk -F"-" '{print $1}'`
+                if [ $persons_birth_month == $bmonth ];
+                then
+                                array[$c]=${birth_dict[$i]}
+                                c=$(($c+1))
+                fi
+        done
+        array[$c]="end"
+        c=$(($c+1))
+done
+
+print () {
+for val in $@
+do
+        if [ $val == "end" ];
+        then
+                printf "=====================\n"
+        else
+                echo $val
+        fi
+
+done
+}
+print ${array[@]}
+
+==============================================================================================
