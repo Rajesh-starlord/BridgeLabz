@@ -1,39 +1,29 @@
 import java.util.*;
-//UC-6 Calculate Wages till a condition of total working hours or days is reached for a month
+//Calculate Wages till a condition of total working hours=100 or days is reached to 20 for a month
 
-class EmpWageComputationUc3{
-   public static void main(String[] args)throws Exception{
-      int wage_per_hr=20;
-      int full_day_hr=8;
-      int half_day_hr=4;
-      String emp_status="";
-      String emp_type="";
-      int day_count=1;
-      int total_work_day=20;
-      int total_wage=0;
-      int daily_wage=0;
-      int work_hrs=0
-      int total_work_hrs=100;
-      System.out.println("Welcome to Employee wage computation program");
-      while(day_count<total_work_day && work_hrs<total_work_hrs){
-         double attCheck=Math.random();
-         if(attCheck>0.5){
-            emp_status="present";
-         }else{
-            emp_status="absent";
-         }
+class EmpWageComputation{
+   public static void main(String[] args){
+    String emp_status="";
+    String emp_type="";
+    int day_count=1;
+    int total_wage=0;
+    int daily_wage=0;
+    int work_hrs=0;
+	//create an Employeeobject
+	Employee emp=new Employee();
+	//create employee attendance object
+	Attendance empAtt=new Attendance();
+    System.out.println("Welcome to Employee wage computation program");
+	//looping through condition
+    while(day_count<emp.total_work_day && work_hrs<emp.total_work_hrs){
+        emp_status=empAtt.isPresent();//check emp is present or absent
          switch(emp_status){
-            case "present"://check emp is part time or full time
-                  double category=Math.random();
-                  if (category>0.5){
-                     emp_type="full_time";
-                  }else{
-                     emp_type="part_time";
-                  }
+            case "present":
+                  emp_type=empAtt.empType();//check emp is part time or full time
                   switch(emp_type){
                      case "full_time":
                         System.out.println("Employee is present and is a full time");
-                        daily_wage=(wage_per_hr*full_day_hr);
+                        daily_wage=(emp.wage_per_hr*emp.full_day_hr);
                         System.out.println("daily_wage="+daily_wage);
                         total_wage=(total_wage+daily_wage);
                         work_hrs=work_hrs+8;
@@ -41,7 +31,7 @@ class EmpWageComputationUc3{
                         break;
                      case "part_time":
                         System.out.println("Employee is present and is a part time");
-                        daily_wage=(wage_per_hr*full_day_hr);
+                        daily_wage=(emp.wage_per_hr*emp.full_day_hr);
                         System.out.println("daily_wage="+daily_wage);
                         total_wage=(total_wage+daily_wage);
                         work_hrs=work_hrs+4;
@@ -50,12 +40,11 @@ class EmpWageComputationUc3{
                   }
             case "absent":
                System.out.println("Employee is absent");
-               System.out.println("daily_wage="+(wage_per_hr*0));
+               System.out.println("daily_wage="+0);
                day_count++;
             break;
          }//switch
       }//while
-      System.out.println("monthly_wage="+total_wage);
-      System.out.println("total_work_hrs="+work_hrs);
+     emp.empWage(total_wage,work_hrs);//send to Employee and print monthly wage
    }//main
 }//class
