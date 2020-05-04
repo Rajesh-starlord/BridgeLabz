@@ -2,18 +2,17 @@
 *Using basic_programming constructs(procedure oriented):
 */
 class EmpWageComputation{
-	//variables
-	public static final int full_day_hr=8;
-   public static final int half_day_hr=4;
 
-   static String emp_status="";
-   static String emp_type="";
-   static int day_count=1;
-   static int total_wage=0;
-   static int daily_wage=0;
-   static int work_hrs=0;
-	//function to claculate emp wage of a company:
-	public static void calEmpWage(String company, int  wage_per_hr, int total_work_day, int total_work_hrs){
+	public static final int FULL_DAY_HR=8;
+	public static final int HALF_DAY_HR=4;
+
+	public static void calEmpWage(String company, int  wage_per_hr, int total_work_day, int total_work_hrs)
+		String emp_status="";
+		String emp_type="";
+		int day_count=1;
+		int total_wage=0;
+		int daily_wage=0;
+		int work_hrs=0;
 		System.out.println("============"+company+"============");
 		while(day_count<=total_work_day && work_hrs<total_work_hrs){
 			double attCheck=Math.random();
@@ -23,7 +22,7 @@ class EmpWageComputation{
 				emp_status="absent";
 			}
 			switch(emp_status){
-				case "present"://check emp is part time or full time
+				case "present":
 					double category=Math.random();
 					if (category>0.5){
 						emp_type="full_time";
@@ -33,7 +32,7 @@ class EmpWageComputation{
 					switch(emp_type){
 						case "full_time":
 							System.out.println("Employee is present and is a full time");
-							daily_wage=(wage_per_hr*full_day_hr);
+							daily_wage=(wage_per_hr*FULL_DAY_HR);
 							System.out.println("daily_wage="+daily_wage);
 							total_wage=(total_wage+daily_wage);
 							work_hrs=work_hrs+8;
@@ -41,7 +40,7 @@ class EmpWageComputation{
 							break;
 						case "part_time":
 							System.out.println("Employee is present and is a part time");
-							daily_wage=(wage_per_hr*half_day_hr);
+							daily_wage=(wage_per_hr*HALF_DAY_HR);
 							System.out.println("daily_wage="+daily_wage);
 							total_wage=(total_wage+daily_wage);
 							work_hrs=work_hrs+4;
@@ -58,16 +57,10 @@ class EmpWageComputation{
 		System.out.println("========================");
 		System.out.println("monthly_wage="+total_wage);
 		System.out.println("total_work_hrs="+work_hrs);
-		day_count=1;
-		total_wage=0;
-		daily_wage=0;
-		work_hrs=0;
 	}//function
-	
-	//main method
    public static void main(String[] args)throws Exception{
-    	System.out.println("Welcome to Employee wage computation program");
-		calEmpWage("INDIAN-OIL",20,5,45);//function call
-		calEmpWage("ZENX",12,7,35);
+    System.out.println("Welcome to Employee wage computation program");
+	calEmpWage("INDIAN-OIL",20,5,45);//function call
+	calEmpWage("ZENX",12,7,35);
    }//main
 }//class

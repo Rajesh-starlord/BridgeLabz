@@ -2,19 +2,19 @@ import java.util.*;
 //Employee class
 class Employee{
 	
-   //class variables
-   private static final int fullDayHr=8;
-   private static final int halfDayHr=4;
+	//class variables
+	private static final int FULL_DAY_HR=8;
+	private static final int HALF_DAY_HR=4;
 	private static int wagePerHr=20;
 	private static int totalWorkHrs=10;
 	private static int totalWorkDays=20;
 	
 	String emp_status="";
-   String emp_type="";
-   int day_count=1;
-   int total_wage=0;
-   int daily_wage=0;
-   int work_hrs=0;
+	String emp_type="";
+	int day_count=1;
+	int total_wage=0;
+	int daily_wage=0;
+	int work_hrs=0;
 	String day="";
 	String Company;
 	//constructors..
@@ -38,25 +38,25 @@ class Employee{
 	//check employee is present or not
 	private String isPresent(){
 		double attCheck=Math.random();
-        if(attCheck>0.5){
-           return "present";
-        }else{
-           return "absent";
-        }
+		if(attCheck>0.5){
+		   return "present";
+		}else{
+		   return "absent";
+		}
 	}
 	//checks the type(full/part) of employee
 	private String empType(){
 		double category=Math.random();
 		if (category>0.5){
 			return "full_time";
-      }else{
-         return "part_time";
-      }
+	    }else{
+		 	return "part_time";
+		}
 	}
 	//prints totalwage and work_hrs
 	private void print(int totalwage, int workhrs){
 		System.out.println("monthly_wage="+totalwage);
-      System.out.println("total_work_hrs="+workhrs);
+      	System.out.println("total_work_hrs="+workhrs);
 	}
 	//adds daily wage to a collection
 	private void addWage(String day,int daily_wage){
@@ -90,7 +90,7 @@ class Employee{
 			}
 			switch(emp_status){
 				case "present"://check emp is part time or full time
-					double category=Math.random();
+				        double category=Math.random();
 					if (category>0.5){
 						emp_type="full_time";
 					}else{
@@ -100,7 +100,7 @@ class Employee{
 						case "full_time":
 							if (work_hrs <= (totalWorkHrs-8) ){
 								System.out.println("Employee is present and is a full time on day"+day_count);
-								daily_wage=(wagePerHr*fullDayHr);
+								daily_wage=(wagePerHr*FULL_DAY_HR);
 								System.out.println("daily_wage="+daily_wage);
 								total_wage+=daily_wage;
 								work_hrs=work_hrs+8;
@@ -110,8 +110,8 @@ class Employee{
 							}else{
 								System.out.println("Employee is present and hrs limited to"+(totalWorkHrs-work_hrs)+" only");
 								daily_wage=(wagePerHr*(totalWorkHrs-work_hrs));
-                        total_wage+=daily_wage;
-                        work_hrs=(work_hrs+(totalWorkHrs-work_hrs));
+								total_wage+=daily_wage;
+								work_hrs=(work_hrs+(totalWorkHrs-work_hrs));
 								day="Day"+day_count;
 								addWage(day,daily_wage);
 								day_count++;
@@ -120,19 +120,19 @@ class Employee{
 						case "part_time":
 							if (work_hrs <= (totalWorkHrs-4) ){
 								System.out.println("Employee is present and is a part time on day"+day_count);
-								daily_wage=(wagePerHr*halfDayHr);
+								daily_wage=(wagePerHr*HALF_DAY_HR);
 								System.out.println("daily_wage="+daily_wage);
 								total_wage+=daily_wage;
-								work_hrs=work_hrs+8;
+								work_hrs=work_hrs+4;
 								day="Day"+day_count;
 								addWage(day,daily_wage);
 								day_count++;
 							}else{
 								System.out.println("Employee is present and hrs limited to"+(totalWorkHrs-work_hrs)+" only");
 								daily_wage=(wagePerHr*(totalWorkHrs-work_hrs));
-                        total_wage+=daily_wage;
+                				total_wage+=daily_wage;
 								day="Day"+day_count;
-                        work_hrs=(work_hrs+(totalWorkHrs-work_hrs));
+                				work_hrs=(work_hrs+(totalWorkHrs-work_hrs));
 								addWage(day,daily_wage);
 								day_count++;
 							}
@@ -145,7 +145,7 @@ class Employee{
 				   daily_wage=0;
 				   addWage(day,daily_wage);
 				   day_count++;
-				break;
+				   break;
 			}//switch
 		}//while
 		System.out.println("---------"+Company+"--------");
